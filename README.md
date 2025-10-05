@@ -1,4 +1,4 @@
-# telecom-auto-recovery
+# Telecom-auto-recovery
 # 🔧 Telecom Service Health Monitor & Auto-Recovery System
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)

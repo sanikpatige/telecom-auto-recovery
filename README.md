@@ -36,22 +36,23 @@ This system demonstrates core infrastructure and systems engineering capabilitie
 - **JSON Logs**: Structured logging for analysis
 
 ## 🏗️ Architecture
-
-┌──────────────────────────────────────┐
-│      Health Monitor                  │
-│  ┌──────┐  ┌──────┐  ┌──────┐        │
-│  │ SIP  │  │ HTTP │  │ TCP  │        │
-│  └──┬───┘  └──┬───┘  └──┬───┘        │
-│     └─────────┴─────────┘            │
-│              │                       │
-│      ┌───────▼────────┐              │
-│      │ Health Engine  │              │
-│      └───────┬────────┘              │ 
-│              │                       │
-│      ┌───────▼────────┐              │
-│      │Recovery Engine │              │ 
-│      └────────────────┘              │
-└──────────────────────────────────────┘
+```mermaid
+graph TD
+    A[Health Monitor] --> B[SIP Checker]
+    A --> C[HTTP Checker]
+    A --> D[TCP Checker]
+    B --> E[Health Engine]
+    C --> E
+    D --> E
+    E --> F[Recovery Engine]
+    F --> G[Restart Service]
+    F --> H[Failover]
+    F --> I[Send Alert]
+    
+    style A fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#f093fb,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#4facfe,stroke:#333,stroke-width:2px,color:#fff
+```
 
 ## 🛠️ Tech Stack
 

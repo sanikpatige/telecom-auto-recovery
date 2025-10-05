@@ -1,0 +1,36 @@
+{
+  "check_interval": 30,
+  "services": [
+    {
+      "name": "google-http-check",
+      "type": "http",
+      "url": "https://www.google.com",
+      "timeout": 5,
+      "recovery": {
+        "action": "alert",
+        "message": "Google is unreachable - check internet connection"
+      }
+    },
+    {
+      "name": "cloudflare-dns",
+      "type": "tcp",
+      "host": "1.1.1.1",
+      "port": 53,
+      "timeout": 3,
+      "recovery": {
+        "action": "failover",
+        "target": "google-dns-8.8.8.8"
+      }
+    },
+    {
+      "name": "github-api",
+      "type": "http",
+      "url": "https://api.github.com",
+      "timeout": 5,
+      "recovery": {
+        "action": "alert",
+        "message": "GitHub API is down"
+      }
+    }
+  ]
+}
